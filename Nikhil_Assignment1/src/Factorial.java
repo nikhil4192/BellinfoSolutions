@@ -10,6 +10,7 @@ public class Factorial {
 			factorial *= i; 
 		}
 		System.out.println("Factorial of "+num+" is "+factorial);
+		scan.close();
 	}
 
 }

@@ -13,6 +13,7 @@ public class ReverseNumber {
 			temp = temp/10;
 		}
 		System.out.println("Reversed number of "+num+" is "+revNum);
+		scan.close();
 	}
 	
 

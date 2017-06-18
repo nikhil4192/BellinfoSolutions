@@ -11,6 +11,7 @@ public class MininumOfNumbers {
 		}
 		Arrays.sort(num);
 		System.out.println("The minimum of 4 numbers is " +num[0]);
+		scan.close();
 
 	}
 

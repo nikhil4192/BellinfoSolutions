@@ -20,6 +20,7 @@ public class FibonacciSeries {
 			count ++;
 			System.out.print(" ,"+fab);
 		}while(count<num);
+		scan.close();
 	}
 
 }

@@ -1,4 +1,4 @@
-import java.util.*;
+
 public class OddNumbers {
 
 	public static void main(String[] args) {
@@ -8,6 +8,7 @@ public class OddNumbers {
 				System.out.print(i+" ,");
 			}
 		}
+	
 
 	}
 

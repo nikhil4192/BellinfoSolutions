@@ -30,6 +30,7 @@ public class IdentifyPrimeNum {
 		else{
 			System.out.println("Given number "+ num +" is a not prime number");
 		}	
+		scan.close();
 	}
 
 	}

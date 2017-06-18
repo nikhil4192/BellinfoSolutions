@@ -18,6 +18,7 @@ public class PalindromeNumber {
 		else{
 			System.out.println("Entered Number "+num+" is not a palindrome number.");
 		}
+		scan.close();
 	}
 
 }

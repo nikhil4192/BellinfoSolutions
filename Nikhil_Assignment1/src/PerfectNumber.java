@@ -5,7 +5,6 @@ public class PerfectNumber {
 		System.out.println("Enter a number to find whether given number is perfect number or not:");
 		Scanner scan = new Scanner(System.in);
 		int num = scan.nextInt();
-		int temp = num;
 		int sum =0;
 		for(int i =1; i<num; i++){
 			if(num%i == 0){
@@ -18,6 +17,7 @@ public class PerfectNumber {
 		else{
 			System.out.println("Entered number "+num+" is not a perfect number.");
 		}
+		scan.close();
 	}
 
 }

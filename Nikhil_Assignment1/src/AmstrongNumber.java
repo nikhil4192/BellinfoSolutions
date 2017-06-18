@@ -19,6 +19,7 @@ public class AmstrongNumber {
 		else{
 			System.out.println("Entered number "+num+" is not a amstrong number.");
 		}
+		scan.close();
 	}
-
+	
 }
