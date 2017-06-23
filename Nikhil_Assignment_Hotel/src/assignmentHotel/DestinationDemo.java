@@ -91,7 +91,7 @@ public class DestinationDemo {
 			if(customerDest.equals(d.getName())){
 				found  = true;
 				System.out.println("Good News...we found your destination with awesome package. Here are the details");
-				System.out.println(d.getName() + " in " + d.getLocation()+ " and Packages Detail:\n"+d.toString());
+				System.out.println(d.getName() + " is in " + d.getLocation()+ " and Packages Detail are:\n"+d.toString());
 				break;
 			}
 		}
