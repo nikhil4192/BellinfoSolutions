@@ -32,15 +32,16 @@ public class SecondHighest {
 		}
 		for(int j=0;j<num.length-2;j++){
 			if(num[num.length-2]==num[j]){
-			System.out.println(num[num.length-2]+" and "+num[j]+" as the values ");
 			same=false;
 			}else if(num[num.length-2]==num[num.length-1]){
-				System.out.println(num[num.length-2]+" and "+num[num.length-1]+" as the values ");
 				same = false;
 			}	
 		}
 		if(same == true){
 			System.out.println("The Second heighest value in the array is: "+num[num.length-2]);
+		}
+		else{
+			System.out.println("The Second heighest value is "+num[num.length-2]+" and it has the duplicate values in the array.");
 		}
 		
 		scan.close();
