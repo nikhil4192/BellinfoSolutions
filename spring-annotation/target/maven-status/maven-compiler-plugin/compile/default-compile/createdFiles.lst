@@ -1,0 +1,6 @@
+com\bellinfo\spring\annotation\init\AppConfig.class
+com\bellinfo\spring\annotation\controller\LandingPageController.class
+com\bellinfo\spring\annotation\model\Student.class
+com\bellinfo\spring\annotation\repository\StudentRepository.class
+com\bellinfo\spring\annotation\init\Initialize.class
+com\bellinfo\spring\annotation\controller\StudentController.class
