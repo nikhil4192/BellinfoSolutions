@@ -25,11 +25,9 @@ public class CustomerServiceImplementor implements CustomerService {
 	public String isValidUser(String username, String password, Model model) {
 		System.out.println("isvalid is inside service isvaliduser");
 		Customer customer;
-		try{
+		
 		customer = (Customer)thecustomerDAO.getCustomer(username, password, model);
-		}catch(NullPointerException e){
-			return "customer-login";
-		}
+		
 		//int userName = (Integer.parseInt(username));
 		 
 			 System.out.println(customer.getCustomerID());
@@ -40,8 +38,8 @@ public class CustomerServiceImplementor implements CustomerService {
 				 //System.out.println((customer.getCustomerID().equals("0")) && (customer.getCustomerPswd().equals("admin")));
 				 return "adminHome";
 			 }
-			 if((customer.getCustomerID().equals(username))&&(customer.getCustomerPswd().equals(password))){
-				 System.out.println((customer.getCustomerID() == username) &&
+			 else if((customer.getCustomerID().equals(username))&&(customer.getCustomerPswd().equals(password))){
+				 System.out.println((customer.getCustomerID().equals(username)) &&
 						  (customer.getCustomerPswd().equals(password)));
 				 
 				 return "userHome";

@@ -41,9 +41,9 @@ public class CustomerController {
 		String user;
 		System.out.println("isvalid is going to execute");
 		user = thecustomerService.isValidUser(username,password,model);
-		if(result.hasErrors()){
-			return "customer-login";
-		}
+//		if(result.hasErrors()){
+//			return "customer-login";
+//		}
 		System.out.println("isvalid is executed");
 		if(user.equals("adminHome")){
 			return "adminHome";
