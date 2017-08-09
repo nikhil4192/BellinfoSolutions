@@ -17,11 +17,10 @@
         
         <mapping class="com.srimatha.finance.model.Customer"/>
        	<mapping class="com.srimatha.finance.model.LoanRegistration"/>
+       	<mapping class="com.srimatha.finance.model.LoanApprovedCustomers"/>
  		<!--  <mapping class = "com.bellinfo.hibernate.inheritance.Payment"/>
  		<mapping class ="com.bellinfo.hibernate.inheritance.CreditCardPayment"/>
  		<mapping class ="com.bellinfo.hibernate.inheritance.ChequePayment"/>
- 		 
- 		
         <mapping resource="payment-per-class.hbm.xml"/>
         <mapping resource="payment-per-subclass.hbm.xml"/>
         <mapping resource="payment-per-concreteclass.hbm.xml"/>-->

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -18,7 +19,7 @@ public class Customer {
 	@NotNull(message="Should not be empty")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="customerID")
-	private String customerID;
+	private int customerID;
 	
 	@Column(name="firstName")
 	private String customerFName;
@@ -32,6 +33,7 @@ public class Customer {
 	@Column(name="phoneNumber")
 	private String customerPhone;
 	
+
 	@Column(name="userId")
 	@NotNull(message="Should not be empty")
 	private String customerUserID;
@@ -45,7 +47,7 @@ public class Customer {
 	}
 	
 
-	public Customer(String customerID, String customerFName, String customerLName,
+	public Customer(int customerID, String customerFName, String customerLName,
 			String customerFatherOrHusbandName, String customerPhone,
 			String customerUserID, String customerPswd) {
 		super();
@@ -58,11 +60,11 @@ public class Customer {
 		this.customerPswd = customerPswd;
 	}
 
-	public String getCustomerID() {
+	public int getCustomerID() {
 		return customerID;
 	}
 
-	public void setCustomerID(String customerID) {
+	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
 

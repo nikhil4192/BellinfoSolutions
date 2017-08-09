@@ -7,6 +7,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>footer</h1>
+<footer>
+<div class="container-fluid">
+            <div class="row center-block" style="background-color: black; color: gray; font-family: cursive; font-size: smaller">
+                <div style="text-align: center "><h3 style="font-family: cursive"><u style="padding-top: 10px">
+                Sri Matha Wellfare Finance Assosiation</u></h3>></div>
+                <div class="col-sm-4"  style="padding-left: 100px; text-align: center ">
+                    <h4 style="font-family: cursive">ADDRESS</h4>
+                    <p style="font-family: cursive">Sai Charan Residency, Old Safilguda</p>
+                    <p style="font-family: cursive">Secunderabad, India, 500 056</p>
+                </div>
+                <div class="col-sm-4" style="padding-left: 100px; text-align: center ">
+                    
+                    <h4 style="font-family: cursive">CONTACT NUMBER</h4>
+                    <p style="font-family: cursive">9440724476</p>
+                    </div>
+                     <div class="col-sm-4" style="padding-left: 100px; text-align: center ">
+                    <h4 style="font-family: cursive">EMAIL ID:</h4>
+                    <p style="font-family: cursive">srimatha@gmail.com</p>
+                </div>
+                
+            </div>
+        </div>
+        </footer>
 </body>
 </html>

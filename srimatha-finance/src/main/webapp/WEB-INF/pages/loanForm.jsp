@@ -103,9 +103,10 @@ body {
     <h1 class="well">Loan Registration Form</h1>
 	<div class="col-lg-12 well">
 	<div class="row">
-					<form:form action="/loanRegistration" method="Post"
+					<form:form action="loanRegistration" method="Post"
 						modelAttribute="loanRegistration">
 						<div class="row">
+						
                         <div class="col-lg-6 form-group">
 								<span><strong>ID</strong></span>
 								<form:input path="customerID" cssClass="form-control"/>

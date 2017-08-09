@@ -22,17 +22,17 @@ public class LoanRegistrationController {
 	@Autowired
 	private LoanRegisterationService theLoanRegisterationService;
 	
+	
 	@RequestMapping(method=RequestMethod.GET)
-	public String studentData(Model model){
+	public String customerData(Model model){
 		LoanRegistration loanRegistration =
 				new LoanRegistration();
 		model.addAttribute("loanRegistration", loanRegistration);
-		model.addAttribute("message", "Welcome....");
 		return "loanForm";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String postStudentData(@Valid @ModelAttribute LoanRegistration loanRegistration, 
+	public String postCustomerData(@Valid @ModelAttribute("loanRegistration") LoanRegistration loanRegistration, 
 									BindingResult result, Model model){
 
 		boolean valid = false;

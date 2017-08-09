@@ -26,6 +26,7 @@
 	-moz-background-size: cover;
 	-webkit-background-size: cover;
 	position: fixed;
+	
 	top: 0;
 	bottom: 0;
 	right: 0;
@@ -42,8 +43,6 @@
 	left: 0;
 }
 
-
-
 .pad {
 	padding: 12px;
 	margin-right: 10px;
@@ -57,44 +56,34 @@
 }
 </style>
 <body>
-<div class="container">
-	<div class="login-screen">
-		<div class="login-center">
-			
-			
-
-
-					<form:form action="/customer" method="POST"
-						modelAttribute="customer">
-
-
-						<nav class="navbar navbar-inverse">
+	<div class="container">
+		<div class="login-screen">
+			<div class="login-center">
+				<form:form action="customer" method="POST" modelAttribute="customer">
+				<nav class="navbar navbar-inverse">
+					
 						
-
-
-							<ul class="nav navbar-nav navbar-right">
-
-								<li><span class="glyphicon glyphicon-user pad"></span>
-								<span style="color: white"><strong>User Id : </strong></span>
-								 <form:input path="customerID"/></li>
-
-								<li><span class="glyphicon glyphicon-log-in pad"></span>
-								<span style="color: white"><strong>Password : </strong></span> 
-								<form:password path="customerPswd"/></li>
-
-
-								<li><input type="submit" class="btn btn-primary btn-pad"
-									style="margin-left: 15px"/></li>
-
-							</ul>
-
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="${pageContext.request.contextPath}/registration"><span class="glyphicon glyphicon-user pad"></span> <span
+								style="color: white"><strong>Sign Up</strong></span></a></li>
+							<li><span style="margin-top: 35px"><span class="glyphicon glyphicon-user pad"></span> <span
+								style="color: white"><strong>User Id : </strong> <form:input
+									path="customerUserID" /></span></li>
+							<li><span class="glyphicon glyphicon-log-in pad"></span> <span
+								style="color: white"><strong>Password : </strong></span> <form:password
+									path="customerPswd" /></li>
+							<li><input type="submit" class="btn btn-primary btn-pad"
+								style="margin-left: 15px" /></li>
+								
+						</ul>
+						
+						
 						
 						</nav>
-						<h1 style="text-align: center">Welcome To Login Page</h1>
+						<h1 style="text-align: center; color:white">Welcome To Login Page</h1>
+				</form:form>
+			</div>
 
-					</form:form>
-				</div>
-			
 		</div>
 	</div>
 
