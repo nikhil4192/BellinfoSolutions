@@ -101,6 +101,8 @@ body {
 }
 </style>
 <body>
+<div id="content" style="position:absolute; top:70px; bottom:170px; left:0px; right:0px; overflow:auto;"> 
+  
 	<div class="container">
 		<div style="border: 2px">
 			<h1 class="well">Loan Registration Form</h1>
@@ -140,11 +142,13 @@ body {
 								<form:input path="loanAmount" cssClass="form-control" />
 							</div>
 							<div class="dropdown col-sm-6 form-group"
-								style="padding-top: 20px; padding-left: 100px">
-								<select name="decision">
+								style="padding-top: 30px; padding-left: 100px">
+								<span><strong>Status</strong></span><select name="status">
 								<option value="Approve" label="Approve"/>
 								<option value="Reject" label="Reject"/>
 								</select>
+							</div>
+							
 							</div>
 							<input type="submit" class="btn btn-primary btn-pad"
 								style="margin-left: 45%" />
@@ -153,7 +157,7 @@ body {
 			</div>
 		</div>
 	</div>
-
+</div>
 	<jsp:include page="footer.jsp" />
 
 </body>

@@ -1,5 +1,6 @@
 package com.srimatha.finance.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.srimatha.finance.model.Customer;
-import com.srimatha.finance.model.LoanApprovedCustomers;
 import com.srimatha.finance.model.LoanRegistration;
 import com.srimatha.finance.service.CustomerService;
 import com.srimatha.finance.service.CustomerServiceImplementor;
@@ -46,6 +46,13 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		return "adminHome";
 	}
+	
+	@GetMapping("/uhome")
+	public String userHome(Model model){
+		Customer customer = new Customer();
+		model.addAttribute("customer", customer);
+		return "userHome";
+	}
 	@GetMapping("/registration")
 	public String getRegistrationData(Model model){
 		Customer customer = new Customer();
@@ -63,9 +70,6 @@ public class CustomerController {
 		String user;
 		System.out.println("isvalid is going to execute");
 		user = thecustomerService.isValidUser(username,password,model);
-//		if(result.hasErrors()){
-//			return "customer-login";
-//		}
 		System.out.println("isvalid is executed");
 		if(user.equals("adminHome")){
 			return "adminHome";
@@ -98,7 +102,7 @@ public class CustomerController {
 		System.out.println(username);
 		String user = (String)req.getSession().getAttribute("username");
 		System.out.println("INSIDE showMeApprovedLoans = "+user);
-		List<LoanApprovedCustomers> userApprovedLoans= thecustomerService.showMeApprovedLoans(user);
+		List<LoanRegistration> userApprovedLoans= thecustomerService.showMeApprovedLoans(user);
 		if(userApprovedLoans.isEmpty()){
 			model.addAttribute("userApprovedLoans", "No approved loans for this user.");
 		}
@@ -109,36 +113,55 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/userHistory")
-	public String history(HttpServletRequest req, LoanApprovedCustomers loanApprovedCustomers,
+	public String history(HttpServletRequest req, LoanRegistration loanRegistration,
 							String username,Model model){
 		String user =(String)req.getSession().getAttribute("username");
 		System.out.println(user);
 		Customer customer = new Customer();
-		List<Customer> list = thecustomerService.history(loanApprovedCustomers,user);
+		List<Customer> list = thecustomerService.history(loanRegistration,user);
 		model.addAttribute("userHistory", list);
 		return "userHistory";
 	}
 	
 	@GetMapping("/approvedRequest")
-	public String approvedRequest(HttpServletRequest req, LoanApprovedCustomers loanApprovedCustomers,
+	public String approvedRequest(HttpServletRequest req, LoanRegistration loanRegistration,
 							String username,Model model){
 		String user =(String)req.getSession().getAttribute("username");
 		System.out.println(user);
 		Customer customer = new Customer();
-		List<Customer> list = thecustomerService.approvedRequest(loanApprovedCustomers,user);
+		List<Customer> list = thecustomerService.approvedRequest(loanRegistration,user);
 		model.addAttribute("approvedRequest", list);
 		return "approvedRequest";
 	}
 	
 	@GetMapping("/rejectedRequest")
-	public String rejectedRequest(HttpServletRequest req, LoanApprovedCustomers loanApprovedCustomers,
+	public String rejectedRequest(HttpServletRequest req, LoanRegistration loanRegistration,
 							String username,Model model){
 		String user =(String)req.getSession().getAttribute("username");
 		System.out.println(user);
 		Customer customer = new Customer();
-		List<Customer> list = thecustomerService.rejectedRequest(loanApprovedCustomers,user);
+		List<Customer> list = thecustomerService.rejectedRequest(loanRegistration,user);
 		model.addAttribute("rejectedRequest", list);
 		return "rejectedRequest";
+	}
+	
+	@GetMapping("/payment")
+	public String getPayment(HttpServletRequest req,LoanRegistration loanRegistration, String username,
+								Model model) throws ParseException{
+		System.out.println("payment");
+		String user = (String)req.getSession().getAttribute("username");
+		LoanRegistration lor = thecustomerService.getPayment(loanRegistration,user);
+		model.addAttribute("payment", lor);
+		return "payment";
+	}
+	
+	@PostMapping("/payment")
+	public String postPayment(HttpServletRequest req, 
+			@ModelAttribute("payment") LoanRegistration payment, String username){
+		String user = (String)req.getSession().getAttribute("username");
+		System.out.println("post payment");
+		thecustomerService.postPayment(payment,user);
+		return "userHome";
 	}
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)

@@ -18,8 +18,9 @@
 <body>
 
 <jsp:include page="userHeader.jsp"/>
+ <div id="content" style="position:absolute; top:70px; bottom:200px; left:0px; right:0px; overflow:auto;"> 
 <form:form action="/userHistory" method="get" modelAttribute="userHistory">
-<div class="container"></div>
+<div class="container">
 <table class="table table-striped">
 <tr>
 <th>Serial Number</th>
@@ -30,6 +31,7 @@
 <th>Phone Number</th>
 <th>Loan Requested Amount</th>
 <th>Request</th>
+<td>Approved Or Rejected Date</td>
 </tr>
 <c:forEach items="${userHistory}" var="item">
 <tr>
@@ -40,7 +42,8 @@
 <td>${item.cutomerFatherName}</td>
 <td>${item.customerPhone}</td>
 <td>${item.loanAmount}</td>
-<td>${item.decision }</td>
+<td>${item.status }</td>
+<td>${item.approveddate }</td>
 </tr>
 
 
@@ -48,6 +51,7 @@
 </table>
 </div>
 </form:form>
+</div>
 <jsp:include page="footer.jsp"/>
 </body>
 </html>

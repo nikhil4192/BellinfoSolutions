@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.srimatha.finance.model.LoanApprovedCustomers;
 import com.srimatha.finance.model.LoanRegistration;
 import com.srimatha.finance.service.LoanRegisterationService;
 import com.srimatha.finance.service.LoanRequestService;
@@ -42,16 +41,6 @@ public class LoanRequestController {
 		return "loanRequest";
 	}
 	
-//	@RequestMapping(method=RequestMethod.POST)
-//	public String postCustomerData(@ModelAttribute("list") ArrayList<LoanApprovedCustomers> list, Model model){
-//		
-//		System.out.println("loan form method started");
-//		theLoanRequestService.addApprovedLoansToDB(list, model);
-//		System.out.println("loan method executed");
-//		
-//		return "loanRequest";
-//		
-//	}
 	
 	@GetMapping("/approve")
 	public String showFormForApprove(@RequestParam("serialID") int theId, Model model){
@@ -66,11 +55,11 @@ public class LoanRequestController {
 	
 	
 	@PostMapping("/approve")
-	public String addLoanRequests(@ModelAttribute("approve") LoanApprovedCustomers approve,
-									LoanRegistration loanRegistration, Model model){
+	public String addLoanRequests(@ModelAttribute("approve") LoanRegistration approve,
+									 Model model){
 		int theId = approve.getSerialNumber();
 		System.out.println("saving approved list started");
-		theLoanRequestService.addLoanRequests(approve, loanRegistration,model);
+		theLoanRequestService.addLoanRequests(approve,model);
 		return "loanRequest";
 	}
 	

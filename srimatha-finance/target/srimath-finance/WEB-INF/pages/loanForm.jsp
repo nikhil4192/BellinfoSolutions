@@ -106,10 +106,7 @@ body {
 					<form:form action="loanRegistration" method="Post"
 						modelAttribute="loanRegistration">
 						<div class="row">
-						<div class="col-lg-6 form-group">
-								<span><strong>Serial numberID</strong></span>
-								<form:input path="serialNumber" cssClass="form-control"/>
-							</div>
+						
                         <div class="col-lg-6 form-group">
 								<span><strong>ID</strong></span>
 								<form:input path="customerID" cssClass="form-control"/>

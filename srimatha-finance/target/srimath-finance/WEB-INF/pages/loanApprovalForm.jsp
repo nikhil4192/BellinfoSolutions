@@ -146,6 +146,11 @@ body {
 								<option value="Reject" label="Reject"/>
 								</select>
 							</div>
+							
+							<div class="col-sm-6 form-group">
+								<span><strong>Date</strong></span>
+								<form:input type="date" path="date" cssClass="form-control" />
+							</div>
 							<input type="submit" class="btn btn-primary btn-pad"
 								style="margin-left: 45%" />
 					</form:form>

@@ -18,6 +18,8 @@
 <body>
 
 <jsp:include page="adminHeader.jsp"></jsp:include>
+<div id="content" style="position:absolute; top:70px; bottom:170px; left:0px; right:0px; overflow:auto;"> 
+ 
 <form:form action="/request" method="POST" modelAttribute="list">
 <div class= "container">
 <table class="table table-striped">
@@ -52,6 +54,7 @@
 									style="margin-left: 15px"/>-->
 
 </form:form>
+</div>
 <jsp:include page="footer.jsp"></jsp:include>
 
 </body>

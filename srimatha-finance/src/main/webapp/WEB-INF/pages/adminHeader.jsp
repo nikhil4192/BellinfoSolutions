@@ -7,12 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id="header" style="position:absolute; top:0px; left:0px; height:200px; right:0px;overflow:hidden;"> 
+   
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li><a href="${pageContext.request.contextPath}/adHome">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
+     <!--  <li><a href="${pageContext.request.contextPath}/payments">Payment</a></li>--> 
     </ul>
     <ul class="nav navbar-nav navbar-right">
     <li><a href="${pageContext.request.contextPath}/rejectedRequest">Rejected Loans</a></li>
@@ -23,5 +24,6 @@
        
     </ul>
   </div>
+   </div> 
 </nav>
 </html>

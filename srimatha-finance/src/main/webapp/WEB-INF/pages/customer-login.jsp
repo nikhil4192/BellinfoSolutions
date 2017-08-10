@@ -56,6 +56,8 @@
 }
 </style>
 <body>
+<div id="content" style="position:absolute; top:200px; bottom:200px; left:0px; right:0px; overflow:auto;"> 
+  
 	<div class="container">
 		<div class="login-screen">
 			<div class="login-center">
@@ -86,6 +88,6 @@
 
 		</div>
 	</div>
-
+</div>
 </body>
 </html>

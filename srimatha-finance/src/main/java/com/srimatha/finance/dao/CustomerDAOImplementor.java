@@ -17,35 +17,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.srimatha.finance.model.Customer;
-import com.srimatha.finance.model.LoanApprovedCustomers;
 import com.srimatha.finance.model.LoanRegistration;
 
 @Repository
 public class CustomerDAOImplementor implements CustomerDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
+     
 	
-	/* Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-     SessionFactory sf = cfg.buildSessionFactory();
-     Session session = sf.openSession();
-     Transaction transaction = session.beginTransaction();*/
-     
-     
+	
 		public Customer isValidUser(String username, String password, Model model) {
 			Session session = sessionFactory.getCurrentSession();
 			System.out.println(username);
 			String hql_select ="from Customer where customerUserID = ?";
 	        Query q = session.createQuery(hql_select);
 	        q.setParameter(0, username);
-//	        Customer c= (Customer)q.uniqueResult();
-//			Criteria c = session.createCriteria(Customer.class);
-//			Criterion cr = Restrictions.eq("customerUserID", username);
-//			c.add(cr);
 			Customer cust = (Customer)q.uniqueResult();
 	        System.out.println(cust.getCustomerUserID());
 	        return cust;
 		}
-
+		
 
 		public Customer getCustomer(String username) {
 			Session session = sessionFactory.getCurrentSession();
@@ -58,14 +49,14 @@ public class CustomerDAOImplementor implements CustomerDAO {
 		}
 
 
-		public List<LoanApprovedCustomers> showMeApprovedLoans(String username) {
+		public List<LoanRegistration> showMeApprovedLoans(String username) {
 			
 			Session session = sessionFactory.getCurrentSession();
 			System.out.println("inside the show me Approval list");
-			String hql_select ="from LoanApprovedCustomers where customerID = ?";
+			String hql_select ="from LoanRegistration where customerID = ?";
 	        Query q = session.createQuery(hql_select);
 	        q.setParameter(0, Integer.parseInt(username));
-			 List<LoanApprovedCustomers> list = (List<LoanApprovedCustomers>)q.list();
+			 List<LoanRegistration> list = (List<LoanRegistration>)q.list();
 			return list;
 		}
 
@@ -90,12 +81,12 @@ public class CustomerDAOImplementor implements CustomerDAO {
 		}
 
 
-		public List<Customer> history(LoanApprovedCustomers loanApprovedCustomers, String user) {
+		public List<Customer> history(LoanRegistration loanRegistration, String user) {
 			Session session = sessionFactory.getCurrentSession();
 			Customer cust = getTheUserDetails(user);
 			int id = cust.getCustomerID();
 			System.out.println("hi");
-			String hql_select ="from LoanApprovedCustomers where customerID = ?";
+			String hql_select ="from LoanRegistration where customerID = ?";
 	        Query q = session.createQuery(hql_select);
 	        q.setParameter(0, id);
 			List<Customer> clist = (List<Customer>)q.list(); 
@@ -104,11 +95,11 @@ public class CustomerDAOImplementor implements CustomerDAO {
 
 
 		public List<Customer> approvedRequest(
-				LoanApprovedCustomers loanApprovedCustomers, String user) {
+				LoanRegistration loanRegistration, String user) {
 			Session session = sessionFactory.getCurrentSession();
 			String q = "Approve";
-			Criteria c = session.createCriteria(LoanApprovedCustomers.class);
-			Criterion cr = Restrictions.eq("decision", q);
+			Criteria c = session.createCriteria(LoanRegistration.class);
+			Criterion cr = Restrictions.eq("status", q);
 			c.add(cr);
 			List<Customer> clist = (List<Customer>)c.list(); 
 			return clist;
@@ -116,15 +107,47 @@ public class CustomerDAOImplementor implements CustomerDAO {
 
 
 		public List<Customer> rejectedRequest(
-				LoanApprovedCustomers loanApprovedCustomers, String user) {
+				LoanRegistration loanRegistration, String user) {
 			Session session = sessionFactory.getCurrentSession();
 			String q = "Reject";
-			Criteria c = session.createCriteria(LoanApprovedCustomers.class);
-			Criterion cr = Restrictions.eq("decision", q);
+			Criteria c = session.createCriteria(LoanRegistration.class);
+			Criterion cr = Restrictions.eq("status", q);
 			c.add(cr);
 			List<Customer> clist = (List<Customer>)c.list(); 
 			return clist;
 		}
+
+
+		public LoanRegistration getPayment(LoanRegistration loanRegistration, String user) {
+			Session session = sessionFactory.getCurrentSession();
+			Customer cust = getTheUserDetails(user);
+			int q = cust.getCustomerID();
+			System.out.println(q);
+			Criteria c = session.createCriteria(LoanRegistration.class);
+			Criterion cr = Restrictions.eq("customerID", q);
+			c.add(cr);
+			LoanRegistration loan = (LoanRegistration)c.uniqueResult();
+			System.out.println(loan.getCustomerFName());
+			return loan;
+		}
+
+
+		public void postPayment(LoanRegistration payment) {
+			Session session = sessionFactory.getCurrentSession();
+			session.update(payment);
+		}
+
+
+		public List<Customer> getAllCustomer() {
+			Session session = sessionFactory.getCurrentSession();
+			String hql_select ="from Customer";
+	        Query q = session.createQuery(hql_select);
+			List<Customer> clist = (List<Customer>)q.list();
+			return clist;
+		}
+
+
+		
 
 
 	

@@ -1,5 +1,7 @@
 package com.srimatha.finance.model;
 
+
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -13,7 +15,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="loanRegistration")
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class LoanRegistration{
 	
 	@Id
@@ -39,6 +40,18 @@ public class LoanRegistration{
 	@Column(name="loanAmount")
 	private double loanAmount;
 	
+	@Column(name="status")
+	private String status;
+	
+	@Column(name="approveddate")
+	private String approveddate;
+	
+	@Column(name="payment")
+	private double payment = 0.0;
+	
+	@Column(name="intrestamount")
+	private double intrestamount = 0.0;
+	
 	public LoanRegistration(){
 		
 	}
@@ -46,7 +59,9 @@ public class LoanRegistration{
 
 	public LoanRegistration(int serialNumber, int customerID,
 			String customerFName, String customerLName,
-			String cutomerFatherName, String customerPhone, double loanAmount) {
+			String cutomerFatherName, String customerPhone,
+			double loanAmount, String status, String approveddate,
+			double payment, double intrestamount) {
 		super();
 		this.serialNumber = serialNumber;
 		this.customerID = customerID;
@@ -55,6 +70,10 @@ public class LoanRegistration{
 		this.cutomerFatherName = cutomerFatherName;
 		this.customerPhone = customerPhone;
 		this.loanAmount = loanAmount;
+		this.status = status;
+		this.approveddate = approveddate;
+		this.payment = payment;
+		this.intrestamount = intrestamount;
 	}
 
 
@@ -129,6 +148,48 @@ public class LoanRegistration{
 	}
 
 	
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	
+	public String getApproveddate() {
+		return approveddate;
+	}
+
+
+	public void setApproveddate(String approveddate) {
+		this.approveddate = approveddate;
+	}
+
+
+	public double getPayment() {
+		return payment;
+	}
+
+
+	public void setPayment(double payment) {
+		this.payment = payment;
+	}
+
+
+	
+	public double getIntrestamount() {
+		return intrestamount;
+	}
+
+
+	public void setIntrestamount(double intrestamount) {
+		this.intrestamount = intrestamount;
+	}
+
+
 	@Override
 	public String toString() {
 		return "LoanRegistration [serialNumber=" + serialNumber
@@ -136,8 +197,14 @@ public class LoanRegistration{
 				+ customerFName + ", customerLName=" + customerLName
 				+ ", cutomerFatherName=" + cutomerFatherName
 				+ ", customerPhone=" + customerPhone + ", loanAmount="
-				+ loanAmount + "]";
+				+ loanAmount + ", status=" + status + ", approveddate="
+				+ approveddate + "]";
 	}
+
+
+	
+
+
 	
 	
 	

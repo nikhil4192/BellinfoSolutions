@@ -1,6 +1,11 @@
 package com.srimatha.finance.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.omg.PortableServer.THREAD_POLICY_ID;
@@ -17,14 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 
-
-
-
-
-
 import com.srimatha.finance.dao.CustomerDAO;
 import com.srimatha.finance.model.Customer;
-import com.srimatha.finance.model.LoanApprovedCustomers;
 import com.srimatha.finance.model.LoanRegistration;
 
 @Service
@@ -32,6 +31,9 @@ public class CustomerServiceImplementor implements CustomerService {
 
 	@Autowired
 	private CustomerDAO thecustomerDAO;
+	
+	
+	
 	@Transactional
 	public String isValidUser(String username, String password, Model model) {
 		System.out.println("isvalid is inside service isvaliduser");
@@ -64,12 +66,12 @@ public class CustomerServiceImplementor implements CustomerService {
 	}
 	
 	@Transactional
-	public List<LoanApprovedCustomers> showMeApprovedLoans(String username) {
-		List<LoanApprovedCustomers> list = thecustomerDAO.showMeApprovedLoans(username);
-		List<LoanApprovedCustomers> userApprovedLoans = new ArrayList<LoanApprovedCustomers>();
+	public List<LoanRegistration> showMeApprovedLoans(String username) {
+		List<LoanRegistration> list = thecustomerDAO.showMeApprovedLoans(username);
+		List<LoanRegistration> userApprovedLoans = new ArrayList<LoanRegistration>();
 		try{
-		for(LoanApprovedCustomers l:list){
-			if(l.getDecision().equals("Approve")){
+		for(LoanRegistration l:list){
+			if((l.getStatus()).equals("Approve")){
 				userApprovedLoans.add(l);
 			}
 		}
@@ -83,7 +85,19 @@ public class CustomerServiceImplementor implements CustomerService {
 
 	@Transactional
 	public void postRegistrationData(Customer customer, Model model) {
+		List<Customer> list = thecustomerDAO.getAllCustomer();
+////		for(Customer c: list){
+////			if((c.getCustomerFName().equals(customer.getCustomerFName())) && 
+////					(c.getCustomerLName().equals(customer.getCustomerLName())) &&
+////					(c.getCustomerFatherOrHusbandName().equals(customer.getCustomerFatherOrHusbandName())) && 
+////					(c.getCustomerPhone().equals(customer.getCustomerPhone())) && 
+////					c.getCustomerUserID().equals(customer.getCustomerUserID())){
+////				
+////				return false;
+////			}
+//		}
 		thecustomerDAO.postRegistrationData(customer, model);
+		//return true;
 		
 	}
 
@@ -94,22 +108,79 @@ public class CustomerServiceImplementor implements CustomerService {
 	}
 
 	@Transactional
-	public List<Customer> history(LoanApprovedCustomers loanApprovedCustomers, String user){
-		return thecustomerDAO.history(loanApprovedCustomers, user);
+	public List<Customer> history(LoanRegistration loanRegistration, String user){
+		return thecustomerDAO.history(loanRegistration, user);
 	}
 
 	@Transactional
 	public List<Customer> approvedRequest(
-			LoanApprovedCustomers loanApprovedCustomers, String user) {
-		// TODO Auto-generated method stub
-		return thecustomerDAO.approvedRequest(loanApprovedCustomers, user);
+			LoanRegistration loanRegistration, String user) {
+		return thecustomerDAO.approvedRequest(loanRegistration, user);
 	}
 
 	@Transactional
 	public List<Customer> rejectedRequest(
-			LoanApprovedCustomers loanApprovedCustomers, String user) {
-		// TODO Auto-generated method stub
-		return thecustomerDAO.rejectedRequest(loanApprovedCustomers, user);
+			LoanRegistration loanRegistration, String user) {
+		return thecustomerDAO.rejectedRequest(loanRegistration, user);
+	}
+
+	@Transactional
+	public LoanRegistration getPayment(LoanRegistration loanRegistration, String user) throws ParseException {
+		LoanRegistration loan = thecustomerDAO.getPayment(loanRegistration, user);
+		int count = 0;
+		Calendar calendar = Calendar.getInstance();	
+		DateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+		Date date = new Date();
+		Date d1 = f.parse(loan.getApproveddate());
+		Date d2 = f.parse(f.format(date));
+		int diffMonth = differenceInMonths(d1, d2);
+		System.out.println(d1 + " "+ d2+" "+diffMonth);
+		double intrest = ((loan.getLoanAmount())*(0.01)*(diffMonth+1));
+		System.out.println(intrest);
+		loan.setIntrestamount(intrest);
+		return loan;
+	}
+	
+	private static int differenceInMonths(Date d1, Date d2) {
+	    Calendar c1 = Calendar.getInstance();
+	    c1.setTime(d1);
+	    Calendar c2 = Calendar.getInstance();
+	    c2.setTime(d2);
+	    int diff = 0;
+	    if (c2.after(c1)) {
+	        while (c2.after(c1)) {
+	            c1.add(Calendar.MONTH, 1);
+	            if (c2.after(c1)) {
+	                diff++;
+	            }
+	        }
+	    } else if (c2.before(c1)) {
+	        while (c2.before(c1)) {
+	            c1.add(Calendar.MONTH, -1);
+	            if (c1.before(c2)) {
+	                diff--;
+	            }
+	        }
+	    }
+	    return diff;
+	}
+
+	@Transactional
+	public void postPayment(LoanRegistration payment, String user) {
+//		LoanRegistration loanRegistration = new LoanRegistration();
+//		LoanRegistration loanDBValues = getPayment(loanRegistration, user);
+//		payment.setCutomerFatherName(loanDBValues.getCustomerFName());
+//		payment.setLoanAmount(loanDBValues.getLoanAmount());
+//		payment.setStatus(loanDBValues.getStatus());
+//		payment.setApproveddate(loanDBValues.getApproveddate());
+		double chgAmount = payment.getLoanAmount();
+		System.out.println("Loan Amount:" +payment.getLoanAmount());
+		double chgPayment = payment.getPayment();
+		chgAmount -= chgPayment;
+		System.out.println("loan after payment :"+chgAmount);
+		payment.setLoanAmount(chgAmount);
+		
+		thecustomerDAO.postPayment(payment);
 	}
 	
 

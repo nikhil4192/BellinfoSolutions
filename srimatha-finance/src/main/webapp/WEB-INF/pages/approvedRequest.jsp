@@ -17,7 +17,8 @@
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"></jsp:include>
-
+<div id="content" style="position:absolute; top:70px; bottom:170px; left:0px; right:0px; overflow:auto;"> 
+ 
 <form:form action="/approvedRequest" method="get" modelAttribute="approvedRequest">
 <div class="container">
 <table class="table table-striped">
@@ -30,6 +31,7 @@
 <th>Phone Number</th>
 <th>Loan Requested Amount</th>
 <th>Request</th>
+<th>Approved Date</th>
 </tr>
 <c:forEach items="${approvedRequest}" var="item">
 <tr>
@@ -40,7 +42,8 @@
 <td>${item.cutomerFatherName}</td>
 <td>${item.customerPhone}</td>
 <td>${item.loanAmount}</td>
-<td>${item.decision }</td>
+<td>${item.status }</td>
+<td>${item.approveddate }</td>
 </tr>
 
 
@@ -48,7 +51,7 @@
 </table>
 </div>
 </form:form>
-
+</div>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

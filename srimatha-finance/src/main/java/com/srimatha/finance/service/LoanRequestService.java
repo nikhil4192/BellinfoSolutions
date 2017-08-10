@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
-import com.srimatha.finance.model.LoanApprovedCustomers;
 import com.srimatha.finance.model.LoanRegistration;
 
 public interface LoanRequestService {
@@ -17,7 +16,7 @@ public interface LoanRequestService {
 
 	public LoanRegistration getCustomerLoanRequest(int theId);
 
-	public void addLoanRequests(LoanApprovedCustomers approve,LoanRegistration loanRegistration,
+	public void addLoanRequests(LoanRegistration approve,
 			Model model);
 
 

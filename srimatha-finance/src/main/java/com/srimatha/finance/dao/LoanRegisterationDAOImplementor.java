@@ -1,5 +1,8 @@
 package com.srimatha.finance.dao;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -15,13 +18,33 @@ import com.srimatha.finance.service.LoanRegisterationService;
 @Repository
 public class LoanRegisterationDAOImplementor implements LoanRegistrationDAO{
 
-	/*Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-    SessionFactory sf = cfg.buildSessionFactory();
-    Session session = sf.openSession();
-    Transaction transaction = session.beginTransaction();*/
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	
+	public List<LoanRegistration> isValidAmount(int customerid, double amount, Model model) {
+		Session session = sessionFactory.getCurrentSession();
+		System.out.println("goinf to database");
+		
+		String hql_select ="from LoanRegistration";
+		Query q = session.createQuery(hql_select); 
+        List<LoanRegistration> cust  = (List<LoanRegistration>)q.list();
+		return cust;
+		
+	}
+	
+	public Customer isValidCustomer(int customerid, String firstname, String lastname, String fathername, String phonenumber, Model model) {
+		Session session = sessionFactory.getCurrentSession();
+		System.out.println("goinf to database");
+		String hql_select ="from Customer where customerID = ?";
+        Query q = session.createQuery(hql_select);
+        q.setParameter(0, customerid);
+		Customer cust = (Customer)q.uniqueResult();
+       
+		System.out.println(cust.getCustomerID() + " " + cust.getCustomerFName() + " " +cust.getCustomerLName());
+		System.out.println(cust.getCustomerFatherOrHusbandName() + " " + cust.getCustomerPhone()+ " " +cust.getCustomerLName());
+        return cust;
+	}
 	
 	public void addLoanFormToDB(LoanRegistration loanRegistration, Model model) {
 		Session session = sessionFactory.getCurrentSession();
@@ -31,6 +54,8 @@ public class LoanRegisterationDAOImplementor implements LoanRegistrationDAO{
 		//session.evict(loanRegistration);
 		
 	}
+
+	
     
     
 }

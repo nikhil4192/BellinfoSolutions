@@ -98,6 +98,8 @@ body {
 </style>
 <body>
 <jsp:include page="userHeader.jsp"></jsp:include>
+<div id="content" style="position:absolute; top:70px; bottom:170px; left:0px; right:0px; overflow:auto;"> 
+  
 <div class="container" >
 	<div style="border: 2px">
     <h1 class="well">Loan Registration Form</h1>
@@ -140,6 +142,7 @@ body {
 									
 					</form:form>
 				</div>
+	</div>
 	</div>
 	</div>
 	</div>

@@ -15,7 +15,7 @@
       <li><a href="#">Page 2</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-    <li><a href="${pageContext.request.contextPath}/userApprovedLoans">Approved Loans</a></li>
+    <li><a href="${pageContext.request.contextPath}/userHistory">Loans History</a></li>
     
       <li><a href="${pageContext.request.contextPath}/loanRegistration"><span class="glyphicon glyphicon-user"></span> Loan Form</a></li>
     

@@ -17,7 +17,10 @@
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"></jsp:include>
+ <div id="content" style="position:absolute; top:70px; bottom:170px; left:0px; right:0px; overflow:auto;"> 
+   
 admin home
+</div> 
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

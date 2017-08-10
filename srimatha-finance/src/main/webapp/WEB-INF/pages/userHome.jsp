@@ -14,10 +14,12 @@
 </head>
 <body>
 <jsp:include page="userHeader.jsp"/>
+<div id="content" style="position:absolute; top:70px; bottom:170px; left:0px; right:0px; overflow:auto;"> 
+ 
 <div class="container">
 <h1>${message}</h1>
 </div>
-
+</div>
 <jsp:include page="footer.jsp"/>
 
 </body>

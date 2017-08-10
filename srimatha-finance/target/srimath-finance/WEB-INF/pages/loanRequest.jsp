@@ -19,16 +19,17 @@
 
 <jsp:include page="adminHeader.jsp"></jsp:include>
 <form:form action="/request" method="POST" modelAttribute="list">
-<table style="border:1px">
-<thead>
-<td>Serial Number</td>
-<td>Customer ID</td>
-<td>First Name</td>
-<td>Last Name</td>
-<td>Father Name</td>
-<td>Phone Number</td>
-<td>Loan Requested Amount</td>
-<td>Request</td>
+<div class= "container">
+<table class="table table-striped">
+<tr>
+<th>Serial Number</th>
+<th>Customer ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Father Name</th>
+<th>Phone Number</th>
+<th>Loan Requested Amount</th>
+<th>Request</th>
 </thead>
 <c:forEach items="${list}" var="item">
 <c:url var="approval" value="/request/approve">
@@ -46,6 +47,7 @@
 </tr>
 </c:forEach>
 </table>
+</div>
 <!--  <input type="submit" class="btn btn-primary btn-pad"
 									style="margin-left: 15px"/>-->
 

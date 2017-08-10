@@ -4,7 +4,6 @@ com\srimatha\finance\service\CustomerServiceImplementor.class
 com\srimatha\finance\service\LoanRequestService.class
 com\srimatha\finance\controller\LandingPageController.class
 com\srimatha\finance\controller\CustomerController.class
-com\srimatha\finance\model\LoanApprovedCustomers.class
 com\srimatha\finance\initializer\AppConfig.class
 com\srimatha\finance\dao\LoanRegistrationDAO.class
 com\srimatha\finance\model\Customer.class
